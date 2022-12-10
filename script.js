@@ -1,3 +1,4 @@
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
@@ -31,5 +32,43 @@ function displayTime() {
 displayTime();
 setInterval(displayTime, 1000);
 
-var currentHour = new Date().getHours();
+//var currentHour = new Date().getHours();
 console.log(currentHour);
+
+var currentHour = 7;
+var hours = ['#9', '#10', '#11', '#12', '#13', '#14', '#15', '#16', '#17']
+
+var index = hours.findIndex(element => element === `#${currentHour}`);
+
+if (currentHour > 17) {
+  for (i = 0; i < hours.length; i++) {
+    $(hours[i]).removeClass('present');
+    $(hours[i]).removeClass('future');
+    $(hours[i]).addClass('past');
+  }
+} 
+else if (currentHour < 9) {
+  for (i = 0; i < hours.length; i++) {
+    $(hours[i]).removeClass('present');
+    $(hours[i]).removeClass('past');
+    $(hours[i]).addClass('future');
+  }
+}
+else {
+
+for (i = index + 1; i < hours.length; i++) {
+  $(hours[i]).addClass('future');
+  $(hours[i]).removeClass('present');
+  $(hours[i]).removeClass('past');
+}
+
+for (i = index - 1; i > 0; i--) {
+  $(hours[i]).addClass('past');
+  $(hours[i]).removeClass('present');
+  $(hours[i]).removeClass('future');
+}
+
+$(hours[index]).addClass('present');
+console.log(index);
+
+};
