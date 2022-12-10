@@ -32,10 +32,9 @@ function displayTime() {
 displayTime();
 setInterval(displayTime, 1000);
 
-//var currentHour = new Date().getHours();
+var currentHour = new Date().getHours();
 console.log(currentHour);
 
-var currentHour = 7;
 var hours = ['#9', '#10', '#11', '#12', '#13', '#14', '#15', '#16', '#17']
 
 var index = hours.findIndex(element => element === `#${currentHour}`);
@@ -56,19 +55,21 @@ else if (currentHour < 9) {
 }
 else {
 
-for (i = index + 1; i < hours.length; i++) {
+for (i = index; i < hours.length; i++) {
   $(hours[i]).addClass('future');
   $(hours[i]).removeClass('present');
   $(hours[i]).removeClass('past');
 }
 
-for (i = index - 1; i > 0; i--) {
+for (i = index; i > 0; i--) {
   $(hours[i]).addClass('past');
   $(hours[i]).removeClass('present');
   $(hours[i]).removeClass('future');
 }
 
 $(hours[index]).addClass('present');
+$(hours[index]).removeClass('past');
+$(hours[index]).removeClass('future');
 console.log(index);
 
 };
