@@ -30,3 +30,6 @@ function displayTime() {
 
 displayTime();
 setInterval(displayTime, 1000);
+
+var currentHour = new Date().getHours();
+console.log(currentHour);
